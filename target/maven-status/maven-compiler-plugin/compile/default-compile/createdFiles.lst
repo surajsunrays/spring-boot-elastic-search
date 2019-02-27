@@ -1,0 +1,6 @@
+com/mkyong/Application.class
+com/mkyong/book/service/BookServiceImpl.class
+com/mkyong/EsConfig.class
+com/mkyong/book/service/BookService.class
+com/mkyong/book/model/Book.class
+com/mkyong/book/repository/BookRepository.class

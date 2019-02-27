@@ -1,0 +1,26 @@
+version: "3.1"
+services:
+  spring-app:
+    image: sunrays86/springboot-springdata-elasticsearch-example-1.0:1.0
+    restart: always
+    deploy:
+      restart_policy:
+        condition: on-failure
+    networks:
+      - default
+    depends_on:
+      - elasticsearch
+
+  elasticsearch:
+    image: elasticsearch:2.4.0
+    restart: always
+    ports:
+      - 9200:9200
+      - 9300:9300
+    links:
+      - spring-app:elasticsearch
+    deploy:
+      restart_policy:
+        condition: on-failure
+    networks:
+      - default
