@@ -2,7 +2,7 @@
 Simple demo example for spring-boot with elastic search example.
 
 ### How to Run this application
-#### 1. Step
+#### 1. Step ONE
 Create docker network with the subnet
 ``` docker network create test-net --subnet=172.31.0.0/16```
 #### 2. Start the elasticsearch container
