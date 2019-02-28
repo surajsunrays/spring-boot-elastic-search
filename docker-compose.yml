@@ -1,16 +1,13 @@
 version: "3.1"
-services:
-  spring-app:
-    image: sunrays86/springboot-springdata-elasticsearch-example-1.0:1.0
-    restart: always
-    deploy:
-      restart_policy:
-        condition: on-failure
-    networks:
-      - default
-    depends_on:
-      - elasticsearch
 
+networks:
+  static-network:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.31.0.0/16
+services:
   elasticsearch:
     image: elasticsearch:2.4.0
     restart: always
@@ -19,8 +16,14 @@ services:
       - 9300:9300
     links:
       - spring-app:elasticsearch
-    deploy:
-      restart_policy:
-        condition: on-failure
     networks:
-      - default
+      static-network:
+        ipv4_address: 172.31.0.10
+
+
+  spring-app:
+    image: sunrays86/springboot-springdata-elasticsearch-example-1.0:1.0
+    restart: always
+    networks:
+      - static-network
+  # Created custom network here
